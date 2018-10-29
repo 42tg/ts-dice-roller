@@ -1,7 +1,6 @@
 import DiceRoll from "./DiceRoll"
 
 const regex = new RegExp(/^(\d+)[wd](\d+)(?:|([+\-*\/])(\d))$/i)
-
 class Dice {
     notation: RegExpExecArray
     count: number
@@ -9,6 +8,7 @@ class Dice {
 
     operant: string
     base: number
+    value: number | undefined = undefined
 
     constructor(diceNotation: string = "1W6") {
         this.notation = regex.exec(diceNotation)
@@ -22,8 +22,8 @@ class Dice {
         this.base = parseInt(this.notation[4], 10) || 0
     }
 
-    roll = () => {
-        return new DiceRoll(this.count, this.eyes)
+    roll = (generatorFunction?: any | undefined) => {
+        return new DiceRoll(this, generatorFunction)
     }
 
     toString = () => {
