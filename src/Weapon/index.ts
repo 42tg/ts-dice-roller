@@ -18,8 +18,8 @@ class Weapon extends Dice {
         const roll = super.roll(generatorFunction)
 
         return roll
-            .map(Exact(this.attributes.exact, this, generatorFunction))
-            .map(Crit(this.attributes.crit, this))
+            .map(Exact(this.attributes.exact, this.eyes, generatorFunction))
+            .map(Crit(this.attributes.crit, this.eyes))
             .map(Sharp(this.attributes.sharp))
     }
 }

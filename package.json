@@ -10,9 +10,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.8",
+    "@types/ramda": "github:types/npm-ramda#dist",
     "jest": "^23.6.0",
     "prettier": "1.14.3",
     "ts-jest": "^23.10.4",

@@ -5,17 +5,17 @@ export const Sharp = (x: number) => value => {
     return value
 }
 
-export const Crit = (x: number, dice: Dice) => value => {
-    if (value === dice.eyes) return value + x
+export const Crit = (x: number, eyes: number) => value => {
+    if (value === eyes) return value + x
     return value
 }
 
 export const Exact = (
     x: number = 0,
-    dice: Dice,
+    eyes: number,
     generatorFunction: any = undefined
 ) => value => {
-    const extraRolls = new Dice(x, dice.eyes).roll(generatorFunction)
+    const extraRolls = new Dice(x, eyes).roll(generatorFunction)
     extraRolls.push(value)
     return extraRolls.reduce((prev, cur) => {
         if (prev > cur) return prev
