@@ -6,8 +6,6 @@ const createArray = (count: number, eyes: number): number[] =>
     //@ts-ignore
     new Array<Number>(count).fill(eyes)
 
-const generator = (eyes: number) => MathRandom(eyes)
-
 interface Dice {
     count: number
     eyes: number
@@ -23,7 +21,7 @@ interface Weapon extends Dice {
     sharp?: number
 }
 
-const rWeapon = ({
+export const rWeapon = ({
     count,
     eyes,
     generator = MathRandom,
@@ -40,11 +38,17 @@ const rWeapon = ({
     )(rDice({ count, eyes, generator }))
 
 const isGreater = (a: number, b: number): number => b - a
-const Standard = (): number[] => rDice({ eyes: 10, count: 2 })
-const Sicherheit = (): [number[], number[]] =>
-    R.splitAt(1, R.sort(isGreater, rDice({ eyes: 10, count: 2 })))
-const Risiko = (): [number[], number[]] =>
-    R.splitAt(2, R.sort(isGreater, rDice({ eyes: 10, count: 4 })))
+
+export const Standard = (generator: Function = MathRandom): number[] =>
+    rDice({ eyes: 10, count: 2, generator })
+export const Sicherheit = (
+    generator: Function = MathRandom
+): [number[], number[]] =>
+    R.splitAt(1, R.sort(isGreater, rDice({ eyes: 10, count: 2, generator })))
+export const Risiko = (
+    generator: Function = MathRandom
+): [number[], number[]] =>
+    R.splitAt(2, R.sort(isGreater, rDice({ eyes: 10, count: 4, generator })))
 
 const diceRolled = rDice({ count: 3, eyes: 10 })
 const weaponRolled = rWeapon({ count: 3, eyes: 10 })
@@ -53,8 +57,8 @@ const sicherheitRolled = Sicherheit()
 const risikoRolled = Risiko()
 
 const getFirstTwo = (rolled: number[]): number => R.sum(R.take(2)(rolled))
-const isPatzer = (rolled: number[]) => R.lte(getFirstTwo(rolled))(3)
-const isTriumph = (rolled: number[]) => R.gte(getFirstTwo(rolled))(19)
+export const isPatzer = (rolled: number[]) => R.lte(getFirstTwo(rolled))(3)
+export const isTriumph = (rolled: number[]) => R.gte(getFirstTwo(rolled))(19)
 console.log(diceRolled)
 console.log(weaponRolled)
 console.log(standardRolled)
