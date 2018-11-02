@@ -6,6 +6,7 @@ import rDice, {
     isPatzer,
     isTriumph
 } from "../src"
+import { is } from "ramda"
 
 describe("test", () => {
     test("ramda dice", () => {
@@ -110,8 +111,17 @@ describe("splittermond dices", () => {
             }
         })
 
-        test("not triumph", () => {
-            const values = [2, 3]
+        test("test all possibilitys", () => {
+            let triumphCount = 0
+            let patzerCount = 0
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    if (isTriumph([i, j])) triumphCount++
+                    if (isPatzer([i, j])) patzerCount++
+                }
+            }
+            expect(triumphCount).toBe(3)
+            expect(patzerCount).toBe(3)
         })
     })
 })
