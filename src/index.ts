@@ -50,20 +50,8 @@ export const Risiko = (
 ): [number[], number[]] =>
     R.splitAt(2, R.sort(isGreater, rDice({ eyes: 10, count: 4, generator })))
 
-const diceRolled = rDice({ count: 3, eyes: 10 })
-const weaponRolled = rWeapon({ count: 3, eyes: 10 })
-const standardRolled = Standard()
-const sicherheitRolled = Sicherheit()
-const risikoRolled = Risiko()
-
 const getFirstTwo = (rolled: number[]): number => R.sum(R.take(2)(rolled))
 export const isPatzer = (rolled: number[]) => R.lte(getFirstTwo(rolled))(3)
 export const isTriumph = (rolled: number[]) => R.gte(getFirstTwo(rolled))(19)
-console.log(diceRolled)
-console.log(weaponRolled)
-console.log(standardRolled)
-console.log(sicherheitRolled)
-console.log(risikoRolled)
-isTriumph(risikoRolled[0]) //?
-isPatzer(risikoRolled[1]) //?
+
 export default rDice
