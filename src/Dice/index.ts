@@ -9,7 +9,7 @@ class Dice {
         this.eyes = eyes
     }
 
-    roll(generatorFunction: any = MathRandom) {
+    roll(generatorFunction: Function = MathRandom) {
         return (
             new Array(this.count)
                 //@ts-ignore
