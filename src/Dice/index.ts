@@ -10,12 +10,9 @@ class Dice {
     }
 
     roll(generatorFunction: Function = MathRandom) {
-        return (
-            new Array(this.count)
-                //@ts-ignore
-                .fill()
-                .map(() => generatorFunction(this.eyes))
-        )
+        return new Array(this.count)
+            .fill(null)
+            .map(() => generatorFunction(this.eyes))
     }
 
     toString() {
