@@ -1,0 +1,16 @@
+{
+  "autorun": false,
+  "terminals": [
+    {
+      "name": "build",
+      "description": "Build the project",
+      "focus": false,
+      "command": "npm run build -- --watch"
+    },
+    {
+      "name": "test",
+      "focus": true,
+      "command": "npm run test -- --watch"
+    }
+  ]
+}

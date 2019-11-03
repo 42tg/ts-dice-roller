@@ -14,7 +14,7 @@ class Weapon extends Dice {
         this.attributes = attributes
     }
 
-    roll(generatorFunction: number = undefined) {
+    roll(generatorFunction: Function = undefined) {
         const roll = super.roll(generatorFunction)
 
         return roll
